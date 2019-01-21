@@ -7,7 +7,7 @@ describe Event do
     load 'event.rb'
   end
 
-	describe 'initializer' do
+	describe 'initialize' do
 		it 'creates an event' do
 
 		end
