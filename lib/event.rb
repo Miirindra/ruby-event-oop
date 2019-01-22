@@ -11,12 +11,11 @@ class Event
 		@title = _title
 		@attendees = _attendees
 	end
-
-	# constructeur surcharger
-	def initialize(_start_date)
-		@start_date = Time.parse(_start_date)
-	end
 	
+	# def initialize(_start_date)
+	# 	@start_date = Time.parse(_start_date)
+	# end
+
 	# Décaler d'événement en 24h
 	def postpone_24h
 		@start_date += 24 * 60 * 60 # 1j = 24h*60mn*60s
@@ -32,15 +31,41 @@ class Event
 		@start_date < Time.now
 	end
 
-	# savoir si un événement est à venir 
+	# savoir si un événement est à venir  (dans le futur)
 	def is_future?
-		!is_past?
+		!self.is_past?
+	end
+
+	# savoir si un événement est bientôt. 
+	# C’est-à-dire si sa start_date est dans moins de 30 minutes.
+	def is_soon?
+		(@start_date-Time.now)/60 <= 30
+	end
+
+	def to_s
+		puts "Title: #{title}"
+		puts "Date de début: #{start_date}"
+		puts "Durée: #{length} minute(s)"
+		puts "Invités: #{attendees.join(", ")}"
+	end
+
+	def self.find_by_email(email)
+		self.new(email)
+	end
+
+	def mise_en_page
+		puts "-" * 50
 	end
 end
 
-event1 = Event.new("2019-06-07 12:00")
-puts event1.is_past? # => false
-puts event1.is_future? # => true
-
-
+# event1 = Event.new("2019-01-22 07:00", 10, "standup quotidien", ["julie", "jean"])
+# event1 = Event.new("2019-01-22 07:50")
+# event1.mise_en_page
+# puts "past: #{event1.is_past?}" 
+# puts "future: #{event1.is_future?}"
+# puts "Now: #{Time.now}"
+# puts "event: #{event1.start_date}"
+# puts "moins de 30mn?: #{event1.is_soon?}"
+# event1.mise_en_page
+# puts event1.to_s
 
