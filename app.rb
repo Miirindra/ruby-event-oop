@@ -1,7 +1,6 @@
 # lignes très pratiques qui appellent les gems du Gemfile.
-# On verra plus tard comment s'en servir ;)
-#Il faut inclure ** gem 'bundler', '~> 2.0', '>= 2.0.1' ** dans Gemfile
-# install **Gemfile.lock** avec **bundle instal**
+# Il faut inclure ** gem 'bundler', '~> 2.0', '>= 2.0.1' ** dans Gemfile
+# install **Gemfile.lock** avec **bundle install**
 
 require 'bundler'
 Bundler.require
